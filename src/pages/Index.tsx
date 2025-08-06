@@ -1,17 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
-
-import { MadeWithDyad } from "@/components/made-with-dyad";
+import { useState } from "react";
+import Navigation from "@/components/Navigation";
+import PatientDashboard from "@/components/PatientDashboard";
+import BloodRequestForm from "@/components/BloodRequestForm";
+import DonorRegistration from "@/components/DonorRegistration";
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState("patient");
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
-        </p>
-      </div>
-      <MadeWithDyad />
+    <div className="min-h-screen bg-background">
+      <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
+      
+      <main className="container mx-auto px-4 py-6">
+        {activeTab === "patient" && <PatientDashboard />}
+        {activeTab === "blood-request" && <BloodRequestForm />}
+        {activeTab === "donor-registration" && <DonorRegistration />}
+      </main>
     </div>
   );
 };
